@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-lato: var(--font-lato);
   --font-poppins: var(--font-poppins);
+  --font-public-sans: var(--font-public-sans);
 }
 
 @media (prefers-color-scheme: dark) {
