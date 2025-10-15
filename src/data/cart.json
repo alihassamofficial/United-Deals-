@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "2 Pieces Mango set - Regular fit",
+      "color": "yellow",
+      "price": 25.99,
+      "quantity": 1,
+      "image": "/images/macbook-pro.png"
+    },
+    {
+      "id": 2,
+      "name": "3 Pieces Mango set - Casual fit",
+      "color": "blue",
+      "price": 32.99,
+      "quantity": 1,
+      "image": "/images/photo-1.png"
+    },
+    {
+      "id": 3,
+      "name": "Zara Cardigan - Regular fit",
+      "color": "brown",
+      "price": 40.25,
+      "quantity": 1,
+      "image": "/images/photo-2.png"
+    }
+  ],
+  "summary": {
+    "price": 99.23,
+    "shipping": 0,
+    "tax": 0,
+    "discount": 47.1,
+    "giftBox": 10.9,
+    "total": 110.13
+  }
+}
