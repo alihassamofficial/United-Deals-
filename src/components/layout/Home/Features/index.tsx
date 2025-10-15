@@ -25,8 +25,8 @@ const features = [
 
 export default function Features() {
   return (
-    <div className="max-w-[1352px] px-5 mx-auto pb-[24px]">
-      {/* cards-wrapper */}
+    <section className="max-w-[1360px] px-5 mx-auto pb-[36px]">
+      {/* feature cards - wrapper */}
       <div className="border border-[#E4E7E9] rounded-[6px] flex flex-col md:flex-row items-center justify-between gap-4 p-4 md:p-6">
         {features.map((item, i) => (
           <div
@@ -58,6 +58,6 @@ export default function Features() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

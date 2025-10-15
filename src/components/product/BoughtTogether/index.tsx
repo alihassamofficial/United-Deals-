@@ -1,0 +1,149 @@
+"use client";
+
+import Image from "next/image";
+import React from "react";
+import HomeButton from "@/components/ui/Buttons/HomeButton";
+
+type Product = {
+  imageSrc: string;
+  title: string;
+  rating?: number;
+  ratingCount?: number;
+  priceLabel?: string;
+};
+
+// Your product data array
+const products: Product[] = [
+  {
+    imageSrc: "/images/product/product-screenbar.png",
+    title: "BenQ ScreenBar Halo LED Monitor Light",
+    rating: 4.7,
+    ratingCount: 21671,
+    priceLabel: "₹125",
+  },
+  {
+    imageSrc: "/images/product/product-hub.png",
+    title: "Honeywell Newly Launched 4-in-1 Ultra Slim USB Hub",
+    rating: 4.7,
+    ratingCount: 21671,
+    priceLabel: "₹125",
+  },
+  {
+    imageSrc: "/images/product/product-stand.png",
+    title: "STRIFF Adjustable Laptop Tabletop Stand",
+    rating: 4.7,
+    ratingCount: 21671,
+    priceLabel: "₹125",
+  },
+  {
+    imageSrc: "/images/product/product-sleeve.png",
+    title: "Dyazo Water Resistant Laptop Sleeve",
+    rating: 4.7,
+    ratingCount: 21671,
+    priceLabel: "₹125",
+  },
+];
+
+export default function BoughtTogether() {
+  return (
+    <section className="mx-auto max-w-[1242px] px-5 mb-[61px]">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-[42px]">
+        <h2 className="text-[20px] md:text-[30px] leading-[95%] font-extrabold text-[#232321] uppercase">
+          frequently bought together
+        </h2>
+        <HomeButton onClick={() => alert("Button clicked!")}>
+          VIEW ALL
+        </HomeButton>
+      </div>
+
+      {/* Product Grid */}
+      <div
+        className="
+          flex flex-wrap justify-center gap-[14px]
+          md:justify-between"
+      >
+        {products.map((product, index) => (
+          <div
+            key={index}
+            className="
+              flex flex-col items-stretch
+              w-[289px]
+            "
+          >
+            {/* Product Image */}
+            <div className="bg-[#F7F7F8] border-[6px] border-[#FAFAFA] rounded-[18px] w-full">
+              <div className="w-full bg-[#F7F7F8] rounded-xl flex items-center justify-center h-[305px]">
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src={product.imageSrc}
+                    alt={product.title}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    sizes="(max-width: 640px) 80vw, 289px"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Text + Rating */}
+            <div className="mt-5 flex flex-col flex-1">
+              <h3
+                className="font-[Lato] font-bold text-[#000000] mb-3"
+                style={{
+                  fontSize: "21.85px",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                }}
+              >
+                {product.title}
+              </h3>
+
+              {/* Rating Row */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-[2px]">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill="#FFA52F"
+                    >
+                      <path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.79 1.402 8.173L12 18.896l-7.336 3.878 1.402-8.173L.132 9.211l8.2-1.193z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-[#333333] font-medium">
+                  {product.rating?.toFixed(1)}
+                </p>
+                <p className="text-sm text-[#6B6B6B]">
+                  ({product.ratingCount?.toLocaleString()} Ratings)
+                </p>
+              </div>
+
+              <div className="flex-1" />
+
+              {/* CTA Button */}
+              <div className="mt-5">
+                <button
+                  className="
+                    w-full py-3 rounded-md text-white font-medium
+                    flex items-center justify-center gap-2
+                    bg-[#000000] hover:bg-[#1A1A1A] transition-colors
+                  "
+                >
+                  <span>BUY NOW -</span>
+                  <span className="font-bold text-[#FFA52F]">
+                    {product.priceLabel}
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

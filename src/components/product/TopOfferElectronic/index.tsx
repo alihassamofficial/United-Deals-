@@ -21,31 +21,31 @@ const sampleData: PromoCard[] = [
     productSrc: "/images/home/top-electronics/iphone.png",
     offerText: "UP to 80% OFF",
   },
-  // {
-  //   id: "realme",
-  //   brand: "realme",
-  //   iconSrc: "/images/home/top-electronics/realme-logo.svg",
-  //   productSrc: "/images/home/top-electronics/realme.png",
-  //   offerText: "UP to 80% OFF",
-  // },
-  // {
-  //   id: "xiaomi",
-  //   brand: "XIAOMI",
-  //   iconSrc: "/images/home/top-electronics/mi-logo.svg",
-  //   productSrc: "/images/home/top-electronics/mi.png",
-  //   offerText: "UP to 80% OFF",
-  // },
+  {
+    id: "realme",
+    brand: "realme",
+    iconSrc: "/images/home/top-electronics/realme-logo.svg",
+    productSrc: "/images/home/top-electronics/realme.png",
+    offerText: "UP to 80% OFF",
+  },
+  {
+    id: "xiaomi",
+    brand: "XIAOMI",
+    iconSrc: "/images/home/top-electronics/mi-logo.svg",
+    productSrc: "/images/home/top-electronics/mi.png",
+    offerText: "UP to 80% OFF",
+  },
 ];
 
-const TopElectronicsBrand: React.FC = () => {
+const TopOfferElectronics: React.FC = () => {
   return (
-    <section className="max-w-[1352px] mx-auto px-5 pb-[45px]">
+    <section className="mx-auto max-w-[1242px] px-5 mb-[61px]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-[26px] pb-[27px] border-b border-[#D9D9D9]">
-        <h2 className="text-[20px] md:text-[34px] leading-[95%] font-extrabold text-[#232321]">
-          Top <span className="text-[#FCBD01]">Electronics Brands</span>
+      <div className="flex items-center justify-between mb-[42px]">
+        <h2 className="text-[20px] md:text-[30px] leading-[95%] font-extrabold text-[#232321] uppercase">
+          TOP Offers in Electronics
         </h2>
-        <HomeButton onClick={() => alert("View all clicked!")}>
+        <HomeButton onClick={() => alert("Button clicked!")}>
           VIEW ALL
         </HomeButton>
       </div>
@@ -107,4 +107,4 @@ const TopElectronicsBrand: React.FC = () => {
   );
 };
 
-export default TopElectronicsBrand;
+export default TopOfferElectronics;
