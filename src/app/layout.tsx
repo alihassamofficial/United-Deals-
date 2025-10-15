@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins, Lato, Public_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
+
+import { UserProvider } from "@/context/UserContext";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -38,9 +41,12 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${poppins.variable} ${publicSans.variable} antialiased flex flex-col min-h-screen`}
       >
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <UserProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </UserProvider>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );

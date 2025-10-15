@@ -28,6 +28,7 @@
       "@/providers/*": ["./src/providers/*"],
       "@/public/*": ["./public/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/context/*": ["./src/context/*"],
       "@/firebase/*": ["./src/lib/firebase/*"]
     }
   },

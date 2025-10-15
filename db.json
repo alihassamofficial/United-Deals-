@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Hassam Ali",
+      "email": "hassam@example.com",
+      "password": "123456",
+      "createdAt": "2025-10-10T10:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "name": "Ayesha Khan",
+      "email": "ayesha@example.com",
+      "password": "654321",
+      "createdAt": "2025-10-11T09:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "name": "Bilal Ahmed",
+      "email": "bilal@example.com",
+      "password": "abcdef",
+      "createdAt": "2025-10-12T08:45:00.000Z"
+    },
+    {
+      "id": "4",
+      "name": "Sana Fatima",
+      "email": "sana@example.com",
+      "password": "qwerty",
+      "createdAt": "2025-10-13T12:10:00.000Z"
+    },
+    {
+      "id": "5",
+      "name": "Usman Tariq",
+      "email": "usman@example.com",
+      "password": "pass123",
+      "createdAt": "2025-10-14T07:20:00.000Z"
+    },
+    {
+      "id": "02df0646-2309-46ac-abe2-bf9807e31901",
+      "firstName": "Hassam",
+      "lastName": "Ali",
+      "email": "test@gmail.com",
+      "password": "etest",
+      "token": "fd577d48-bb66-4ce4-bff8-bd813a7d4d78"
+    },
+    {
+      "id": "3d0dcfc4-9d23-41ef-b9c0-eaf79a96f13b",
+      "firstName": "Hassam",
+      "lastName": "Ali",
+      "email": "test1@gmail.com",
+      "password": "test",
+      "token": "de292243-8b7e-4405-b767-7bd170b4df10"
+    },
+    {
+      "id": "b83b98bb-e1c8-4ad7-956b-f18fb94735cd",
+      "firstName": "Hassam",
+      "lastName": "Ali",
+      "email": "test11@gmail.com",
+      "password": "test",
+      "token": "8aa9b6a6-d2a7-4a89-8dba-392aa29f35b5"
+    },
+    {
+      "id": "57ebdec9-04f3-4f6b-beaf-cba8b057076c",
+      "firstName": "test",
+      "lastName": "",
+      "email": "test2@gmail.com",
+      "password": "test",
+      "token": "807e44fd-5eb6-471a-9d04-267f3ac6c130"
+    }
+  ]
+}
