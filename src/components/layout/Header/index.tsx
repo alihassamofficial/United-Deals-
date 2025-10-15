@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
 import React from "react";
+import { useCurrentUser } from "@/context/UserContext";
 
 const categories = [
   "Groceries",
@@ -15,6 +17,7 @@ const categories = [
 ];
 
 const Header: React.FC = () => {
+  const { user } = useCurrentUser();
   return (
     <header className="w-full">
       {/* Top announcement bar */}
@@ -110,23 +113,33 @@ const Header: React.FC = () => {
                 <span className="hidden md:inline">My Deals</span>
               </div>
 
-              <Link href="/auth">
-                <div
-                  className="hidden sm:flex items-center gap-[6px] text-[16px] leading-[18px] font-bold text-[#666666s]"
-                  aria-label="My Deals"
-                >
-                  {/* user icon */}
-                  <Image
-                    src="/images/header/user-icon.svg"
-                    width={24}
-                    height={24}
-                    alt="usericon"
-                  />
+              <div
+                className="hidden sm:flex items-center gap-[6px] text-[16px] leading-[18px] font-bold text-[#666666s]"
+                aria-label="My Deals"
+              >
+                {/* user icon */}
+                <Image
+                  src="/images/header/user-icon.svg"
+                  width={24}
+                  height={24}
+                  alt="usericon"
+                />
+                {user ? (
                   <span className="hidden md:inline hover:underline">
-                    Sign Up/Sign In
+                    {user.firstName} {user.lastName}
                   </span>
-                </div>
-              </Link>
+                ) : (
+                  <span className="hidden md:inline ">
+                    <Link href="/signup" className="hover:underline">
+                      Sign Up
+                    </Link>
+                    /
+                    <Link href="/login" className="hover:underline">
+                      Sign In
+                    </Link>
+                  </span>
+                )}
+              </div>
 
               <Link href="/cart">
                 <div
