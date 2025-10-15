@@ -3,7 +3,7 @@ import Image from "next/image";
 const features = [
   {
     iconSrc: "/images/home/features/package.svg",
-    title: "FASTED DELIVERY",
+    title: "FASTEST DELIVERY",
     desc: "Delivery in 24/H",
   },
   {
@@ -25,34 +25,56 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="max-w-[1360px] px-5 mx-auto pb-[36px]">
-      {/* feature cards - wrapper */}
-      <div className="border border-[#E4E7E9] rounded-[6px] flex flex-col md:flex-row items-center justify-between gap-4 p-4 md:p-6">
+    <section className="max-w-[1360px] px-5 mx-auto pb-10">
+      {/* Wrapper */}
+      <div
+        className="
+          border border-[#E4E7E9] rounded-[8px]
+          flex flex-col md:flex-row
+          items-stretch md:items-center
+          justify-between
+          overflow-hidden
+        "
+      >
         {features.map((item, i) => (
           <div
             key={i}
-            className="flex flex-col md:flex-row items-center w-full md:w-auto"
+            className="
+              flex flex-col md:flex-row
+              items-center justify-center
+              w-full md:w-1/4
+              text-center md:text-left
+              p-5 md:p-6
+              hover:bg-[#F9FAFB]
+              transition-colors duration-200
+            "
           >
-            {/* feature card */}
-            <div className="flex items-center p-4 w-full md:w-[280px]">
-              <Image src={item.iconSrc} alt="icon" width={40} height={40} />
-              <div className="ml-[16px]">
-                <h4 className="font-public-sans text-[14px] font-medium leading-[20px] text-[#191C1F] uppercase">
+            {/* Icon + Text */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-3">
+              <Image
+                src={item.iconSrc}
+                alt={item.title}
+                width={40}
+                height={40}
+                className="w-10 h-10 md:w-12 md:h-12"
+              />
+              <div>
+                <h4 className="font-public-sans text-[14px] md:text-[15px] font-semibold text-[#191C1F] uppercase">
                   {item.title}
                 </h4>
-                <p className="font-public-sans text-[14px] leading-[20px] text-[#5F6C72]">
+                <p className="font-public-sans text-[13px] md:text-[14px] text-[#5F6C72]">
                   {item.desc}
                 </p>
               </div>
             </div>
 
-            {/* responsive divider */}
+            {/* Divider */}
             {i !== features.length - 1 && (
               <>
-                {/* horizontal on mobile */}
-                <div className="block md:hidden h-[1px] w-full bg-[#E4E7E9]" />
-                {/* vertical on desktop */}
-                <div className="hidden md:block h-[56px] w-[1px] bg-[#E4E7E9]" />
+                {/* horizontal divider (mobile) */}
+                <div className="block md:hidden w-full h-[1px] bg-[#E4E7E9] mt-4" />
+                {/* vertical divider (desktop) */}
+                <div className="hidden md:block h-[60px] w-[1px] bg-[#E4E7E9]" />
               </>
             )}
           </div>
