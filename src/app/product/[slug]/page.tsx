@@ -5,10 +5,9 @@ import {
 } from "@/components/product/product-details";
 import productsJson from "@/data/products.json";
 import { notFound } from "next/navigation";
-import ProductBreadcrumb from "@/components/product/ProductBreadcrumb";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { ProductTabs } from "@/components/product/ProductDescriptionTabs";
 import BoughtTogether from "@/components/product/BoughtTogether";
-import TopElectronicsBrand from "@/components/layout/Home/TopElectronicsBrand";
 import TopOfferElectronics from "@/components/product/TopOfferElectronic";
 
 export default async function ProductPage({
@@ -41,7 +40,7 @@ export default async function ProductPage({
 
   return (
     <>
-      <ProductBreadcrumb />
+      <Breadcrumb />
       <div className="mx-auto max-w-[1242px] px-5 pt-[62px] ">
         <div className="grid grid-cols-1 gap-[50px] lg:grid-cols-2">
           <ProductGallery images={images} />

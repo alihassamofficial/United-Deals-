@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-export default function ProductBreadcrumb() {
+export default function Breadcrumb() {
   const pathname = usePathname();
   // Split the path into segments, e.g. /shop/electronics/macbook -> ['shop', 'electronics', 'macbook']
   const segments = pathname.split("/").filter(Boolean);
