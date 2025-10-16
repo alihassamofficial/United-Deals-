@@ -1,12 +1,16 @@
+"use client";
+
 import React from "react";
 
+import { useRouter } from "next/navigation";
 import NavigationHeader from "@/components/NavigationHeader";
 
-import data from "@/data/cart.json";
 import ProductCart from "./ProductCart";
 import OrderSummary from "./OrderSummary";
 
 export const Cart = () => {
+  const router = useRouter();
+
   return (
     <div className="max-w-[1240px] mx-auto px-5 w-full overflow-hidden">
       {/* Top Navigation Header */}
@@ -39,11 +43,14 @@ export const Cart = () => {
       <div className="flex flex-col md:flex-row gap-[39px] mb-[55px]">
         {/* Left Side - Cart */}
         <div className="flex-1">
-          <ProductCart items={data.items} />
+          <ProductCart />
         </div>
 
         {/* Right Side - Order Summary */}
-        <OrderSummary summary={data.summary} />
+        <OrderSummary
+          onButtonClick={() => router.push("/customer-info")}
+          buttonLabel="Shop Now"
+        />
       </div>
     </div>
   );

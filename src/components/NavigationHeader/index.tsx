@@ -19,8 +19,10 @@ export default function NavigationHeader({
   const handleBackClick = () => {
     if (onBack) {
       onBack();
+    } else if (window.history.length > 1) {
+      router.back();
     } else {
-      router.push("/"); // Default back to home
+      router.push("/");
     }
   };
 

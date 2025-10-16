@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -10,28 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-
 import { cn } from "@/lib/utils";
-
-type Option = { label: string; value: string };
-type ColorOption = { name: string; value: string; hex: string };
-
-export interface ProductDetailsData {
-  title: string;
-  sku: string;
-  availability: "In Stock" | "Out of Stock";
-  brand: string;
-  category: string;
-  rating: number;
-  reviewsCount: number;
-  price: number;
-  mrp: number;
-  discountPercent: number;
-  colors: ColorOption[];
-  sizes: Option[];
-  memory: Option[];
-  storage: Option[];
-}
+import { useCart } from "@/context/CartContext";
+import type { Product } from "@/types/product";
+import Image from "next/image";
 
 function formatINR(amount: number) {
   return new Intl.NumberFormat("en-IN", {
@@ -41,20 +23,39 @@ function formatINR(amount: number) {
   }).format(amount);
 }
 
-export function ProductDetails({ data }: { data: ProductDetailsData }) {
+export function ProductDetails({ data }: { data: Product }) {
   const [qty, setQty] = useState(1);
-  const [color, setColor] = useState(data.colors[0]?.value);
-  const [size, setSize] = useState(data.sizes[0]?.value);
-  const [mem, setMem] = useState(data.memory[0]?.value);
-  const [storage, setStorage] = useState(data.storage[0]?.value);
+  const [color, setColor] = useState(data.colors?.[0]?.hex || "");
+  const [mem, setMem] = useState(data.memory?.[0]?.value || "");
+  const [storage, setStorage] = useState(data.storage?.[0]?.value || "");
+  const [addedToCart, setAddedToCart] = useState(false);
+  // Ensure availability is either "In Stock" or "Out of Stock"
+  const availability: "In Stock" | "Out of Stock" =
+    data.availability === "In Stock" ? "In Stock" : "Out of Stock";
 
-  const youSave = data.mrp - data.price;
+  const router = useRouter();
+  const { cart, addToCart } = useCart();
+
+  useEffect(() => {
+    const productExists = cart.some((item) => item.id === data.id);
+    setAddedToCart(productExists);
+  }, [cart, data.id]);
+
+  const handleAddToCart = () => {
+    addToCart({
+      ...data,
+      quantity: qty,
+      selectedColor: color,
+      selectedMemory: mem,
+      selectedStorage: storage,
+    });
+    setAddedToCart(true);
+  };
 
   return (
     <section>
       {/* Rating */}
-      <div className="flex items-center gap-[5.46px] mb-[7px]">
-        {/* stars */}
+      <div className="flex items-center gap-1 mb-2">
         <div className="flex items-center">
           {Array.from({ length: 5 }).map((_, i) => {
             const filled = i < Math.round(data.rating);
@@ -78,97 +79,64 @@ export function ProductDetails({ data }: { data: ProductDetailsData }) {
             );
           })}
         </div>
-        {/* rating & reviews */}
-        <p className="text-[12.75px] font-public-sans  leading-[18.21px] text-[#191C1F]">
-          <span className="font-semibold">
-            {data.rating.toFixed(1)} Star Rating
-          </span>{" "}
-          <span className=" text-[#5F6C72]">
-            ({data.reviewsCount.toLocaleString()} user feedback)
-          </span>
+        <p className="text-[12.75px] text-gray-600">
+          <span className="font-semibold">{data.rating.toFixed(1)} Star</span> (
+          {data.reviewsCount.toLocaleString()} feedback)
         </p>
       </div>
 
       {/* Title */}
-      <h1
-        id="product-title"
-        className="text-[#191C1F] text-[23px] leading-none font-extrabold mb-[14.5px]"
-      >
-        {data.title}
-      </h1>
+      <h1 className="text-2xl font-extrabold mb-3">{data.title}</h1>
 
       {/* Meta */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-[7px] text-[12.75px] leading-[18.21px] font-public-sans mb-[16.8px] ">
-        {/* sku */}
-        <div className="text-[#5F6C72]">
-          Sku: <span className="text-[#191C1F]">{data.sku}</span>
+      <div className="grid grid-cols-2 gap-2 text-sm text-gray-500 mb-4">
+        <div>
+          Sku: <span className="text-black">{data.sku}</span>
         </div>
-        {/* Available */}
-        <div className="text-[#5F6C72]">
+        <div>
           Availability:{" "}
           <span
             className={cn(
-              "font-medium text-[#191C1F]",
-              data.availability === "In Stock"
-                ? "text-foreground"
-                : "text-[#5F6C72]"
+              "font-medium",
+              availability === "In Stock" ? "text-green-600" : "text-red-600"
             )}
           >
-            {data.availability}
+            {availability}
           </span>
         </div>
-        {/* brand */}
-        <div className="text-[#5F6C72]">
-          Brand: <span className="text-[#191C1F]">{data.brand}</span>
+        <div>
+          Brand: <span className="text-black">{data.brand}</span>
         </div>
-        {/* category */}
-        <div className="text-[#5F6C72]">
-          Category: <span className="text-[#191C1F]">{data.category}</span>
+        <div>
+          Category: <span className="text-black">{data.category}</span>
         </div>
       </div>
 
-      {/* Pricing  */}
-      <div className="flex items-center gap-[3px]">
-        {/* discounted price */}
-        <div className="text-[21.85px] leading-[29.14px] text-[#2EB100] font-extrabold">
+      {/* Pricing */}
+      <div className="flex items-center gap-2 mb-4">
+        <div className="text-green-600 font-extrabold text-xl">
           {formatINR(data.price)}
         </div>
-        {/* old price */}
-        <div className="text-[#77878F] text-[16.39px] leading-[21.85px] font-public-sans line-through">
-          {formatINR(data.mrp)}
-        </div>
-        {/* discounted badge */}
-        <div className="ml-[10px] bg-[#EFD33D] text-[#191C1F] text-[12.75px] leading-[18.21px] font-semibold py-[4.5px] px-[9px] font-public-sans">
+        <div className="line-through text-gray-400">{formatINR(data.mrp)}</div>
+        <div className="bg-yellow-400 px-2 py-0.5 font-semibold">
           {data.discountPercent}% OFF
         </div>
       </div>
-      <p className="text-[#77878F] text-[15.64px] leading-[19.55px] my-[6px]">
-        or
-      </p>
-      <div className=" text-[15px] leading-[19px] font-extrabold mb-[22px]">
-        Get it for{" "}
-        <span className="text-[#2EB100]">
-          {formatINR(data.price - youSave)}
-        </span>
-      </div>
-
-      {/* divider */}
-      <div className="w-full h-[1px] bg-[#E4E7E9]" />
 
       {/* Options */}
-      <div className="space-y-4 mt-[11px] mb-[32.8px]">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {/* Colors */}
-          <div className="space-y-[7px]">
-            <div className="text-sm font-bold">Color</div>
-            <div className="flex flex-wrap gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        {/* Colors */}
+        {data.colors?.length > 0 && (
+          <div>
+            <div className="font-bold text-sm mb-1">Color</div>
+            <div className="flex gap-2">
               {data.colors.map((c) => (
                 <button
                   key={c.value}
-                  onClick={() => setColor(c.value)}
+                  onClick={() => setColor(c.hex)}
                   className={cn(
-                    "relative h-8 w-8 rounded-full border ring-offset-background focus-visible:outline-none focus-visible:ring",
-                    color === c.value && "ring-2 ring-[#FCBD01]"
+                    "w-8 h-8 rounded-full border focus:outline-none",
+                    color === c.hex && "ring-2 ring-yellow-500" // ✅ fixed comparison
                   )}
                   style={{ backgroundColor: c.hex }}
                   title={c.name}
@@ -176,27 +144,12 @@ export function ProductDetails({ data }: { data: ProductDetailsData }) {
               ))}
             </div>
           </div>
+        )}
 
-          {/* Size */}
-          <div className="space-y-[7px]">
-            <div className="text-sm font-bold">Size</div>
-            <Select value={size} onValueChange={setSize}>
-              <SelectTrigger className="w-full rounded-none">
-                <SelectValue placeholder="Choose size" />
-              </SelectTrigger>
-              <SelectContent>
-                {data.sizes.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>
-                    {s.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Storage */}
-          <div className="space-y-[7px]">
-            <div className="text-sm font-bold">Storage</div>
+        {/* Storage */}
+        {data.storage?.length > 0 && (
+          <div>
+            <div className="font-bold text-sm mb-1">Storage</div>
             <Select value={storage} onValueChange={setStorage}>
               <SelectTrigger className="w-full rounded-none">
                 <SelectValue placeholder="Choose storage" />
@@ -210,10 +163,12 @@ export function ProductDetails({ data }: { data: ProductDetailsData }) {
               </SelectContent>
             </Select>
           </div>
+        )}
 
-          {/* Memory */}
-          <div className="space-y-[7px]">
-            <div className="text-sm font-bold">Memory</div>
+        {/* Memory */}
+        {data.memory?.length > 0 && (
+          <div>
+            <div className="font-bold text-sm mb-1">Memory</div>
             <Select value={mem} onValueChange={setMem}>
               <SelectTrigger className="w-full rounded-none">
                 <SelectValue placeholder="Choose memory" />
@@ -227,35 +182,71 @@ export function ProductDetails({ data }: { data: ProductDetailsData }) {
               </SelectContent>
             </Select>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Quantity + CTAs */}
-      <div className="flex flex-wrap items-center gap-3 mb-[22px]">
-        <div className="flex items-center rounded-[50px] text-[#475156] text-[14px] leading-[18px] font-semibold  border">
+      {/* Quantity + Buttons */}
+      <div className="flex gap-3 items-center mb-4 flex-wrap">
+        <div className="flex items-center border rounded-full text-sm">
           <button
             onClick={() => setQty((q) => Math.max(1, q - 1))}
-            className="px-3 py-2  cursor-pointer"
-            aria-label="Decrease quantity"
+            className="px-3 py-1"
           >
             –
           </button>
-          <div className="min-w-10 text-center">{qty}</div>
-          <button
-            onClick={() => setQty((q) => q + 1)}
-            className="px-3 py-2 cursor-pointer"
-            aria-label="Increase quantity"
-          >
+          <div className="px-3">{qty}</div>
+          <button onClick={() => setQty((q) => q + 1)} className="px-3 py-1">
             +
           </button>
         </div>
 
         <Button size="lg" className="rounded-full px-6">
-          GET DEAL ({formatINR(90000)})
+          <div className="relative w-[21px] h-[21px]">
+            <Image
+              src={`/images/product/Local offer.svg`}
+              alt="offer"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          GET DEAL ({formatINR(data.price)})
         </Button>
-        <Button size="lg" variant="secondary" className="rounded-full px-6">
-          ADD
-        </Button>
+
+        {addedToCart ? (
+          <Button
+            size="lg"
+            variant="default"
+            className="rounded-full px-6 bg-transparent hover:bg-[white] hover:white border border-[#1877F2] text-[#1877F2] cursor-pointer text-[14px] font-bold"
+            onClick={() => router.push("/cart")}
+          >
+            <div className="relative w-[21px] h-[21px]">
+              <Image
+                src={`/images/product/ShoppingCart.svg`}
+                alt="cart"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+            VIEW CART
+          </Button>
+        ) : (
+          <Button
+            size="lg"
+            variant="secondary"
+            className="rounded-full border border-[#1877F2] text-[14px] font-bold text-[#1877F2] px-6 cursor-pointer"
+            onClick={handleAddToCart}
+          >
+            <div className="relative w-[21px] h-[21px]">
+              <Image
+                src={`/images/product/ShoppingCart.svg`}
+                alt="cart"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+            ADD
+          </Button>
+        )}
       </div>
 
       {/* Utilities */}

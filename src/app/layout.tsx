@@ -3,10 +3,12 @@ import { Poppins, Lato, Public_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
+import { CartProvider } from "@/context/CartContext";
 import { UserProvider } from "@/context/UserContext";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { CheckoutProvider } from "@/context/CheckoutContext";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -42,9 +44,13 @@ export default function RootLayout({
         className={`${lato.variable} ${poppins.variable} ${publicSans.variable} antialiased flex flex-col min-h-screen`}
       >
         <UserProvider>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <CheckoutProvider>
+            <CartProvider>
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </CartProvider>
+          </CheckoutProvider>
         </UserProvider>
         <Toaster richColors position="top-center" />
       </body>

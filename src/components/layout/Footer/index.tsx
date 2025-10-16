@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-wrap gap-[6px]">
               {popularTags.map((t) => (
                 <Link key={t} href="#">
-                  <div className="text-[10.5px] leading-[15px] font-medium text-white  border-[#303639] hover:border-[#FFFFFF]  border-[0.75px] rounded-[1.5px] px-[9px] py-[4.5px] hover:bg-[#303639]">
+                  <div className="text-[10.5px] leading-[15px] font-medium text-white border-[#303639] hover:border-[#FFFFFF] border-[0.75px] rounded-[1.5px] px-[9px] py-[4.5px] hover:bg-[#303639] whitespace-normal">
                     {t}
                   </div>
                 </Link>

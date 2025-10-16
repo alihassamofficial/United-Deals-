@@ -1,57 +1,50 @@
 import { ProductGallery } from "@/components/product/product-gallery";
-import {
-  ProductDetails,
-  type ProductDetailsData,
-} from "@/components/product/product-details";
-import productsJson from "@/data/products.json";
+import { ProductDetails } from "@/components/product/product-details";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { ProductTabs } from "@/components/product/ProductDescriptionTabs";
 import BoughtTogether from "@/components/product/BoughtTogether";
 import TopOfferElectronics from "@/components/product/TopOfferElectronic";
+import type { Product } from "@/types/product";
 
 export default async function ProductPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const productData = productsJson.products.find((p) => p.slug === params.slug);
-  if (!productData) return notFound();
+  // Fetch product from JSON Server
+  const res = await fetch(
+    `http://localhost:4000/products?slug=${params.slug}`,
+    {
+      cache: "no-store", // ensures fresh data on each request
+    }
+  );
+  const data: Product[] = await res.json();
+  const product = data[0];
 
-  const images = productData.images;
-
-  const product: ProductDetailsData = {
-    title: productData.title,
-    sku: productData.sku,
-    availability:
-      productData.availability as ProductDetailsData["availability"],
-    brand: productData.brand,
-    category: productData.category,
-    rating: productData.rating,
-    reviewsCount: productData.reviewsCount,
-    price: productData.price,
-    mrp: productData.mrp,
-    discountPercent: productData.discountPercent,
-    colors: productData.colors,
-    sizes: productData.sizes,
-    memory: productData.memory,
-    storage: productData.storage,
-  };
+  if (!product) return notFound();
 
   return (
     <>
       <Breadcrumb />
-      <div className="mx-auto max-w-[1242px] px-5 pt-[62px] ">
-        <div className="grid grid-cols-1 gap-[50px] lg:grid-cols-2">
-          <ProductGallery images={images} />
+      <div className="mx-auto max-w-[1242px] px-5 pt-[62px]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          <ProductGallery
+            images={product.images.map((img) => ({
+              src: img,
+              alt: product.title,
+            }))}
+          />
           <ProductDetails data={product} />
         </div>
+
         <ProductTabs
-          description={productData.description}
-          features={productData.features}
-          shipping={productData.shipping}
+          description={product.description}
+          features={product.features}
+          shipping={[{ label: "Free", detail: "Delivered in 5 days" }]}
         />
       </div>
+
       <BoughtTogether />
       <TopOfferElectronics />
     </>

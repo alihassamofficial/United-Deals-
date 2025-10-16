@@ -1,16 +1,27 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
+// import { toast } from "sonner";
 import NavigationHeader from "../NavigationHeader";
 import { useRouter } from "next/navigation";
 import OrderSummary from "../Cart/OrderSummary";
-import data from "@/data/cart.json";
+
 import CheckoutForm from "./CheckOutForm";
 
 function CustomerInfo() {
   const router = useRouter();
+  const formRef = useRef<{ validateForm: () => boolean }>(null);
 
   const handleBack = () => {
-    router.back(); // navigates one step back in browser history
+    router.back();
+  };
+
+  const handleNext = () => {
+    if (formRef.current && formRef.current.validateForm()) {
+      router.push("/shipping-payment");
+    } else {
+      // toast.error("All fields are required!");
+      console.log("All fields Required");
+    }
   };
   return (
     <div className="max-w-[1240px] mx-auto px-5 w-full overflow-hidden">
@@ -43,11 +54,11 @@ function CustomerInfo() {
       <div className="flex items-start flex-col md:flex-row gap-[39px] mb-[55px] md:mb-[182px]">
         {/* Left Side - Cart */}
         <div className="flex-1">
-          <CheckoutForm />
+          <CheckoutForm ref={formRef} />
         </div>
 
         {/* Right Side - Order Summary */}
-        <OrderSummary summary={data.summary} />
+        <OrderSummary onButtonClick={handleNext} buttonLabel="NEXT" />
       </div>
     </div>
   );

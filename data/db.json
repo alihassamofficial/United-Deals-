@@ -1,0 +1,376 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Hassam Ali",
+      "email": "hassam@example.com",
+      "password": "123456",
+      "createdAt": "2025-10-10T10:30:00.000Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "slug": "redmi-13c",
+      "title": "Redmi 13C",
+      "sku": "REDMI13C-128",
+      "availability": "In Stock",
+      "brand": "Xiaomi",
+      "category": "Mobiles",
+      "rating": 4.6,
+      "reviewsCount": 980,
+      "price": 9999,
+      "mrp": 11999,
+      "discountPercent": 17,
+      "colors": [
+        {
+          "name": "Midnight Black",
+          "value": "midnight-black",
+          "hex": "#1a1a1a"
+        },
+        {
+          "name": "Mint Green",
+          "value": "mint-green",
+          "hex": "#a8e6cf"
+        }
+      ],
+      "memory": [
+        {
+          "label": "4 GB",
+          "value": "4gb"
+        }
+      ],
+      "storage": [
+        {
+          "label": "64 GB",
+          "value": "64gb"
+        },
+        {
+          "label": "128 GB",
+          "value": "128gb"
+        }
+      ],
+      "description": "A powerful budget smartphone with a large display and long-lasting battery.",
+      "features": [
+        "6.74-inch HD+ display",
+        "5000mAh battery",
+        "50MP AI dual camera"
+      ],
+      "shipping": "Delivered in 3–5 business days",
+      "images": [
+        "/images/products/redmi13c.png",
+        "/images/products/redmi13c.png",
+        "/images/products/redmi13c.png"
+      ],
+      "flashDeal": {
+        "active": true,
+        "endsInHours": 5,
+        "dealPrice": 125,
+        "label": "Flash Deal Ends in 5 Hours!"
+      }
+    },
+    {
+      "id": "2",
+      "slug": "poco-m6-pro-5g",
+      "title": "POCO M6 Pro 5G",
+      "sku": "POCOM6PRO-128",
+      "availability": "In Stock",
+      "brand": "POCO",
+      "category": "Mobiles",
+      "rating": 4.7,
+      "reviewsCount": 1100,
+      "price": 10999,
+      "mrp": 13999,
+      "discountPercent": 21,
+      "colors": [
+        {
+          "name": "Power Black",
+          "value": "power-black",
+          "hex": "#101010"
+        },
+        {
+          "name": "Forest Green",
+          "value": "forest-green",
+          "hex": "#2e8b57"
+        }
+      ],
+      "memory": [
+        {
+          "label": "6 GB",
+          "value": "6gb"
+        }
+      ],
+      "storage": [
+        {
+          "label": "128 GB",
+          "value": "128gb"
+        },
+        {
+          "label": "256 GB",
+          "value": "256gb"
+        }
+      ],
+      "description": "Experience ultra-smooth performance with Snapdragon 4 Gen 2 and 5G connectivity.",
+      "features": [
+        "Snapdragon 4 Gen 2",
+        "90Hz FHD+ display",
+        "5000mAh battery"
+      ],
+      "shipping": "Delivered in 3–5 business days",
+      "images": [
+        "/images/products/pocom6pro.png"
+      ],
+      "flashDeal": {
+        "active": true,
+        "endsInHours": 1,
+        "dealPrice": 125,
+        "label": "Flash Deal Ends in 1 Hour!"
+      }
+    },
+    {
+      "id": "3",
+      "slug": "urban-e-bike",
+      "title": "Urban Electric Bike",
+      "sku": "URBANEBIKE-01",
+      "availability": "In Stock",
+      "brand": "Urban Mobility",
+      "category": "Electric Vehicles",
+      "rating": 4.5,
+      "reviewsCount": 520,
+      "price": 42999,
+      "mrp": 49999,
+      "discountPercent": 14,
+      "colors": [
+        {
+          "name": "Black & Red",
+          "value": "black-red",
+          "hex": "#000000"
+        }
+      ],
+      "memory": [],
+      "storage": [],
+      "description": "Eco-friendly electric bike with long range and modern design.",
+      "features": [
+        "60 km range",
+        "250W motor",
+        "LED display",
+        "Disc brakes"
+      ],
+      "shipping": "Delivered in 5–7 business days",
+      "images": [
+        "/images/products/electricbike.png"
+      ],
+      "flashDeal": {
+        "active": true,
+        "endsInHours": 5,
+        "dealPrice": 125,
+        "label": "Flash Deal Ends in 5 Hours!"
+      }
+    },
+    {
+      "id": "4",
+      "slug": "iqoo-z6-lite-5g",
+      "title": "iQOO Z6 Lite 5G",
+      "sku": "IQOOZ6LITE-128",
+      "availability": "In Stock",
+      "brand": "iQOO",
+      "category": "Mobiles",
+      "rating": 4.6,
+      "reviewsCount": 875,
+      "price": 12999,
+      "mrp": 15999,
+      "discountPercent": 19,
+      "colors": [
+        {
+          "name": "Stellar Green",
+          "value": "stellar-green",
+          "hex": "#9fe2bf"
+        },
+        {
+          "name": "Mystic Night",
+          "value": "mystic-night",
+          "hex": "#1a1a40"
+        }
+      ],
+      "memory": [
+        {
+          "label": "6 GB",
+          "value": "6gb"
+        }
+      ],
+      "storage": [
+        {
+          "label": "128 GB",
+          "value": "128gb"
+        }
+      ],
+      "description": "India’s first Snapdragon 4 Gen 1 smartphone with ultra-fast 5G.",
+      "features": [
+        "Snapdragon 4 Gen 1",
+        "120Hz display",
+        "5000mAh battery"
+      ],
+      "shipping": "Delivered in 3–5 business days",
+      "images": [
+        "/images/products/iqooz6lite.png"
+      ],
+      "flashDeal": {
+        "active": true,
+        "endsInHours": 1,
+        "dealPrice": 125,
+        "label": "Flash Deal Ends in 1 Hour!"
+      }
+    },
+    {
+      "id": "5",
+      "slug": "iqoo-z6-lite-5g",
+      "title": "iQOO Z6 Lite 5G",
+      "sku": "IQOOZ6LITE-128",
+      "availability": "In Stock",
+      "brand": "iQOO",
+      "category": "Mobiles",
+      "rating": 4.6,
+      "reviewsCount": 875,
+      "price": 12999,
+      "mrp": 15999,
+      "discountPercent": 19,
+      "colors": [
+        {
+          "name": "Stellar Green",
+          "value": "stellar-green",
+          "hex": "#9fe2bf"
+        },
+        {
+          "name": "Mystic Night",
+          "value": "mystic-night",
+          "hex": "#1a1a40"
+        }
+      ],
+      "memory": [
+        {
+          "label": "6 GB",
+          "value": "6gb"
+        }
+      ],
+      "storage": [
+        {
+          "label": "128 GB",
+          "value": "128gb"
+        }
+      ],
+      "description": "India’s first Snapdragon 4 Gen 1 smartphone with ultra-fast 5G.",
+      "features": [
+        "Snapdragon 4 Gen 1",
+        "120Hz display",
+        "5000mAh battery"
+      ],
+      "shipping": "Delivered in 3–5 business days",
+      "images": [
+        "/images/products/iqooz6lite.png"
+      ],
+      "flashDeal": {
+        "active": false,
+        "endsInHours": 1,
+        "dealPrice": 125,
+        "label": "Flash Deal Ends in 1 Hour!"
+      }
+    }
+  ],
+  "orders": [
+    {
+      "id": 1760610432178,
+      "date": "2025-10-16T10:27:12.178Z",
+      "customerInfo": {
+        "email": "dd",
+        "firstName": "dwd",
+        "lastName": "dwd",
+        "country": "Austria",
+        "state": "",
+        "address": "dw",
+        "phone": "dwd"
+      },
+      "shipping": {
+        "id": "ausff",
+        "title": "AUSFF",
+        "delivery": "14–21 days",
+        "cost": 0,
+        "insuranceAvailable": false,
+        "logo": "/images/ausff.svg"
+      },
+      "payment": {
+        "id": "paypal",
+        "title": "PayPal",
+        "description": "PayPal is a trusted online payment platform that allows individuals and businesses to securely send and receive money electronically.",
+        "logo": "/images/paypal.svg"
+      },
+      "items": [
+        {
+          "id": "1",
+          "slug": "redmi-13c",
+          "title": "Redmi 13C",
+          "sku": "REDMI13C-128",
+          "availability": "In Stock",
+          "brand": "Xiaomi",
+          "category": "Mobiles",
+          "rating": 4.6,
+          "reviewsCount": 980,
+          "price": 9999,
+          "mrp": 11999,
+          "discountPercent": 17,
+          "colors": [
+            {
+              "name": "Midnight Black",
+              "value": "midnight-black",
+              "hex": "#1a1a1a"
+            },
+            {
+              "name": "Mint Green",
+              "value": "mint-green",
+              "hex": "#a8e6cf"
+            }
+          ],
+          "memory": [
+            {
+              "label": "4 GB",
+              "value": "4gb"
+            }
+          ],
+          "storage": [
+            {
+              "label": "64 GB",
+              "value": "64gb"
+            },
+            {
+              "label": "128 GB",
+              "value": "128gb"
+            }
+          ],
+          "description": "A powerful budget smartphone with a large display and long-lasting battery.",
+          "features": [
+            "6.74-inch HD+ display",
+            "5000mAh battery",
+            "50MP AI dual camera"
+          ],
+          "shipping": "Delivered in 3–5 business days",
+          "images": [
+            "/images/products/redmi13c.png",
+            "/images/products/redmi13c.png",
+            "/images/products/redmi13c.png"
+          ],
+          "flashDeal": {
+            "active": true,
+            "endsInHours": 5,
+            "dealPrice": 125,
+            "label": "Flash Deal Ends in 5 Hours!"
+          },
+          "quantity": 3,
+          "selectedColor": "#1a1a1a",
+          "selectedMemory": "4gb",
+          "selectedStorage": "64gb"
+        }
+      ],
+      "total": 29997,
+      "status": "Pending"
+    }
+  ]
+}
