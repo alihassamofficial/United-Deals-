@@ -42,7 +42,7 @@ const CheckoutForm = forwardRef((_, ref) => {
       const states = countryStates[existingCountry.alpha2.toUpperCase()] || [];
       setAvailableStates(states);
     }
-  }, []);
+  }, [countriesList, customerInfo.country]);
 
   // ✅ Validation function
   const validateForm = () => {
