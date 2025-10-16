@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -38,27 +39,9 @@ const slides: Slide[] = [
 const Slider = () => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
-  const swiperRef = useRef<any>(null);
-
-  // Attach navigation refs after mount
-  useEffect(() => {
-    if (
-      swiperRef.current &&
-      prevRef.current &&
-      nextRef.current &&
-      swiperRef.current.params.navigation
-    ) {
-      swiperRef.current.params.navigation.prevEl = prevRef.current;
-      swiperRef.current.params.navigation.nextEl = nextRef.current;
-
-      swiperRef.current.navigation.destroy();
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
-    }
-  }, []);
 
   return (
-    <section className="relative bg-[#0C59B6] text-[#FFFFFF] rounded-[17.49px] ">
+    <section className="relative bg-[#0C59B6] text-[#FFFFFF] rounded-[17.49px]">
       {/* Vector */}
       <Image
         src="/images/home/yellow-circle.png"
@@ -79,7 +62,6 @@ const Slider = () => {
             alt="Next"
             width={7.65}
             height={15}
-            className="text-black"
           />
         </div>
       </button>
@@ -92,27 +74,33 @@ const Slider = () => {
         <div className="flex items-center justify-center w-[54px] h-[54px] md:w-[74px] md:h-[74px] lg:w-[94px] lg:h-[94px] rounded-full bg-[#F3F8FA] border-[4px] md:border-[6px] lg:border-[8.75px] border-white">
           <Image
             src="/images/home/arrow-left.svg"
-            alt="Next"
+            alt="Prev"
             width={7.65}
             height={15}
-            className="text-black"
           />
         </div>
       </button>
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        pagination={{ clickable: true, dynamicBullets: true }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
         slidesPerView={1}
         loop
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        pagination={{ clickable: true, dynamicBullets: true }}
+        onBeforeInit={(swiper: SwiperType) => {
+          // Assign navigation elements safely before initialization
+          if (typeof swiper.params.navigation !== "boolean") {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }
+        }}
       >
         {slides.map((s) => (
           <SwiperSlide key={s.id}>
             <div className="relative">
-              <div className="flex flex-col md:flex-row items-center justify-between pl-10 lg:pl-[98px] ">
+              <div className="flex flex-col md:flex-row items-center justify-between pl-10 lg:pl-[98px]">
                 {/* Left text area */}
-                <div className="max-w-[627px] w-full  py-6 md:py-[42px] text-center md:text-left">
+                <div className="max-w-[627px] w-full py-6 md:py-[42px] text-center md:text-left">
                   <p className="text-xl md:text-2xl lg:text-[32.8px] leading-tight font-medium mb-3 md:mb-[21px]">
                     {s.subHeading}
                   </p>
@@ -128,7 +116,7 @@ const Slider = () => {
                 <div className="max-w-[580px] w-full relative flex justify-center items-center mt-6 md:mt-0">
                   <Image
                     src={s.imageSrc}
-                    alt="image"
+                    alt={s.title}
                     width={590}
                     height={332}
                     className="object-contain w-full h-auto drop-shadow-xl"
