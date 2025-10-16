@@ -7,23 +7,40 @@ import BoughtTogether from "@/components/product/BoughtTogether";
 import TopOfferElectronics from "@/components/product/TopOfferElectronic";
 import type { Product } from "@/types/product";
 import { API_ENDPOINTS } from "@/lib/constants/api";
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  // Fetch product from JSON Server
-  const res = await fetch(`${API_ENDPOINTS.PRODUCTS}?slug=${params.slug}`, {
-    cache: "no-store", // ensures fresh data on each request
-  });
-  const data: Product[] = await res.json();
-  const product = data[0];
 
+// Define the props type for Next.js dynamic route
+interface ProductPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+// Fetch product by slug
+async function fetchProduct(slug: string): Promise<Product | null> {
+  try {
+    const res = await fetch(`${API_ENDPOINTS.PRODUCTS}?slug=${slug}`, {
+      cache: "no-store", // always fresh data
+    });
+
+    if (!res.ok) return null;
+
+    const data: Product[] = await res.json();
+    return data[0] || null;
+  } catch (err) {
+    console.error("Error fetching product:", err);
+    return null;
+  }
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const product = await fetchProduct(params.slug);
+
+  // Trigger Next.js 404 if product not found
   if (!product) return notFound();
-
   return (
     <>
       <Breadcrumb />
+
       <div className="mx-auto max-w-[1242px] px-5 pt-[62px]">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <ProductGallery
