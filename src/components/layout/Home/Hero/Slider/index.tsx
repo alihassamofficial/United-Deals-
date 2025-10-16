@@ -101,7 +101,7 @@ const Slider = () => {
         {slides.map((s) => (
           <SwiperSlide key={s.id}>
             <div className="relative">
-              <div className="flex flex-col md:flex-row items-center justify-between pl-10 lg:pl-[98px]">
+              <div className="flex flex-col md:flex-row items-center justify-between pl-0 lg:pl-[98px]">
                 {/* Left text area */}
                 <div className="max-w-[627px] w-full py-6 md:py-[42px] text-center md:text-left">
                   <p className="text-xl md:text-2xl lg:text-[32.8px] leading-tight font-medium mb-3 md:mb-[21px]">
