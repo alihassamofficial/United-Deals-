@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 
-import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -39,7 +38,7 @@ const slides: Slide[] = [
 const Slider = () => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
-  const swiperRef = useRef<SwiperType | null>(null);
+  const swiperRef = useRef<any>(null);
 
   // Attach navigation refs after mount
   useEffect(() => {

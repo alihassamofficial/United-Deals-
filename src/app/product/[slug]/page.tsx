@@ -6,19 +6,16 @@ import { ProductTabs } from "@/components/product/ProductDescriptionTabs";
 import BoughtTogether from "@/components/product/BoughtTogether";
 import TopOfferElectronics from "@/components/product/TopOfferElectronic";
 import type { Product } from "@/types/product";
-
+import { API_ENDPOINTS } from "@/lib/constants/api";
 export default async function ProductPage({
   params,
 }: {
   params: { slug: string };
 }) {
   // Fetch product from JSON Server
-  const res = await fetch(
-    `http://localhost:4000/products?slug=${params.slug}`,
-    {
-      cache: "no-store", // ensures fresh data on each request
-    }
-  );
+  const res = await fetch(`${API_ENDPOINTS.PRODUCTS}?slug=${params.slug}`, {
+    cache: "no-store", // ensures fresh data on each request
+  });
   const data: Product[] = await res.json();
   const product = data[0];
 
