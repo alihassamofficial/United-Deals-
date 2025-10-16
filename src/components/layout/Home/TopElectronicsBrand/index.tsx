@@ -38,7 +38,7 @@ const sampleData: PromoCard[] = [
 
 const TopOfferElectronics: React.FC = () => {
   return (
-    <section className="mx-auto max-w-[1242px] px-4 sm:px-5 mb-[61px]">
+    <section className="mx-auto max-w-[1352px] px-4 sm:px-5 mb-[61px]">
       {/* Header */}{" "}
       <div className="flex items-center justify-between mb-[42px]">
         {" "}
