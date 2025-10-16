@@ -1,14 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import zara from "@/public/images/home/brands/Zara.svg";
+import dg from "@/public/images/home/brands/DG.svg";
+import hm from "@/public/images/home/brands/HM.svg";
+import chanel from "@/public/images/home/brands/chanel.svg";
+import prada from "@/public/images/home/brands/prada.svg";
+import biba from "@/public/images/home/brands/biba.svg";
 
 const brands = [
-  { name: "ZARA", src: "/images/home/brands/zara.svg" },
-  { name: "D&G", src: "/images/home/brands/dg.svg" },
-  { name: "H&M", src: "/images/home/brands/hm.svg" },
-  { name: "CHANEL", src: "/images/home/brands/chanel.svg" },
-  { name: "PRADA", src: "/images/home/brands/prada.svg" },
-  { name: "BIBA", src: "/images/home/brands/biba.svg" },
+  { name: "ZARA", src: zara },
+  { name: "D&G", src: dg },
+  { name: "H&M", src: hm },
+  { name: "CHANEL", src: chanel },
+  { name: "PRADA", src: prada },
+  { name: "BIBA", src: biba },
 ];
 
 export default function ShopByBrands() {
@@ -19,7 +25,7 @@ export default function ShopByBrands() {
         SHOP BY BRANDS
       </h2>
 
-      {/* Brand Scroller (mobile) + Grid (desktop) */}
+      {/* Brand */}
       <div
         className="
           flex md:grid 
