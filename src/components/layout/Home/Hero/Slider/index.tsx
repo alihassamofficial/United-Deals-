@@ -88,8 +88,11 @@ const Slider = () => {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true, dynamicBullets: true }}
         onBeforeInit={(swiper: SwiperType) => {
-          // Assign navigation elements safely before initialization
-          if (typeof swiper.params.navigation !== "boolean") {
+          // Ensure navigation params exist before assigning
+          if (
+            swiper.params.navigation &&
+            typeof swiper.params.navigation !== "boolean"
+          ) {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
           }
