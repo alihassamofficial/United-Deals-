@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 
       {/* Main header */}
       <div className="border-b border-[#EDEDED]">
-        <div className="max-w-[1240px] mx-auto px-5 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="max-w-[1240px] mx-auto px-5 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 flex-wrap">
           {/* Left: hamburger + logo */}
           <div className="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
             {/* Hamburger */}
