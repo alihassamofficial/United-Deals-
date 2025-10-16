@@ -58,7 +58,12 @@ export default function DealOfDay() {
 
   const globalRemaining = Math.max(globalDealsEnd - tick, 0);
 
-  if (!products.length) return <div>Loading...</div>;
+  if (!products.length)
+    return (
+      <div className="max-w-[1363px] px-5 mx-auto mb-[55px]">
+        Loading Products...
+      </div>
+    );
 
   return (
     <section className="max-w-[1363px] px-5 mx-auto mb-[55px]">
