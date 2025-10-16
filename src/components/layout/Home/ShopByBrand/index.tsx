@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import zara from "@/public/images/home/brands/Zara.svg";
+import zara from "@/public/images/home/brands/zara.svg";
 import dg from "@/public/images/home/brands/DG.svg";
 import hm from "@/public/images/home/brands/HM.svg";
 import chanel from "@/public/images/home/brands/chanel.svg";
